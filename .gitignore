@@ -172,4 +172,9 @@ pip-log.txt
 #############
 */.idea/
 *.iml
+**/indexes
 target/*
+acropolis-web/indexes
+acropolis-web/target
+acropolis-web/*.iml
+acropolis-web/.idea
