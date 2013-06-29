@@ -29,10 +29,10 @@ public class NearMeController {
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
         log.debug("searching");
-        List<Issue> issues = finder.findAround(10000000.0D, 1.5333D, 103.388D);
-        for (Issue issue : issues) {
-            log.debug(issue.toString());
-        }
+//        List<Issue> issues = finder.findAround(10000000.0D, 1.5333D, 103.388D);
+//        for (Issue issue : issues) {
+//            log.debug(issue.toString());
+//        }
 
         model.addAttribute("message", "Spring 3 MVC Hello World");
         return "nearme";
