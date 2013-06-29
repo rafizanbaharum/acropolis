@@ -10,7 +10,7 @@
     </appender>
 
 
-    <logger name="net.canang.acropolis.core">
+    <logger name="net.canang.acropolis">
         <level value="DEBUG"/>
     </logger>
 
@@ -19,11 +19,11 @@
     </logger>
 
     <logger name="org.hibernate">
-        <level value="INFO"/>
+        <level value="ERROR"/>
     </logger>
 
     <logger name="org.springframework">
-        <level value="DEBUG"/>
+        <level value="ERROR"/>
     </logger>
 
     <root>
