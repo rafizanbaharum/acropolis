@@ -1,0 +1,7 @@
+http://stackoverflow.com/questions/8339638/hiding-the-sliding-drawer-handle?rq=1
+
+http://simprodev.blogspot.com/2012/09/split-view-right-way.html
+http://stackoverflow.com/questions/6355546/sliding-drawer-hiding-listview?rq=1
+http://answers.oreilly.com/topic/2448-how-to-use-the-fragment-class-in-the-android-honeycomb-sdk-preview/
+
+http://www.androiduipatterns.com/2012/06/emerging-ui-pattern-side-navigation.html
