@@ -2,6 +2,7 @@ package net.canang.acropolis.core.dao;
 
 import net.canang.acropolis.core.model.Issue;
 import net.canang.acropolis.core.model.IssueImpl;
+import net.canang.acropolis.core.model.IssueStatus;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
 import java.util.List;
+
+import static net.canang.acropolis.core.model.IssueStatus.RESOLVED;
+import static net.canang.acropolis.core.model.IssueStatus.UNRESOLVED;
 
 
 /**
@@ -39,6 +43,7 @@ public class IssueDaoTest {
         Issue issue = new IssueImpl();
         issue.setLatitude(1.5333D);
         issue.setLongitude(103.6667D);
+        issue.setStatus(IssueStatus.UNRESOLVED);
         issue.setReporter("Rafizan Uda Baharum");
         issue.setReportedDate(new Date());
         issue.setTitle("Kerosakan Lampu Jalan");
@@ -48,6 +53,7 @@ public class IssueDaoTest {
         issue = new IssueImpl();
         issue.setLatitude(1.5343D);
         issue.setLongitude(103.888D);
+        issue.setStatus(IssueStatus.UNRESOLVED);
         issue.setReporter("Rafizan Uda Baharum");
         issue.setReportedDate(new Date());
         issue.setTitle("Kerosakan Lampu Jalan II");
@@ -57,6 +63,7 @@ public class IssueDaoTest {
         issue = new IssueImpl();
         issue.setLatitude(1.5243D);
         issue.setLongitude(103.388D);
+        issue.setStatus(IssueStatus.UNRESOLVED);
         issue.setReporter("Rafizan Uda Baharum");
         issue.setReportedDate(new Date());
         issue.setTitle("Kerosakan Lampu Jalan II");
@@ -66,6 +73,7 @@ public class IssueDaoTest {
         issue = new IssueImpl();
         issue.setLatitude(2.5243D);
         issue.setLongitude(102.388D);
+        issue.setStatus(IssueStatus.UNRESOLVED);
         issue.setReporter("Rafizan Uda Baharum");
         issue.setReportedDate(new Date());
         issue.setTitle("Kerosakan Lampu Jalan II");
@@ -76,7 +84,7 @@ public class IssueDaoTest {
         startLat = 1.5333D;
         startLon = 103.388D;
 
-        List<Issue> issues = issueDao.findAround(radius, startLat, startLon);
+        List<Issue> issues = issueDao.findAround(RESOLVED, radius, startLat, startLon);
         for (Issue i : issues) {
             log.debug("issue: " + i);
         }
@@ -93,8 +101,9 @@ public class IssueDaoTest {
 
     @Test
     public void findAround() {
-        List<Issue> issues = issueDao.findAround(10.0D, 1.5333D, 103.388D);
+        List<Issue> issues = issueDao.findAround(UNRESOLVED, 100.0D, 1.5333D, 103.388D);
         for (Issue issue : issues) {
+            log.debug("issue: " + issue.getStatus());
             log.debug("issue: " + issue);
         }
     }
@@ -104,6 +113,7 @@ public class IssueDaoTest {
         Issue issue = new IssueImpl();
         issue.setLatitude(1.5555D);
         issue.setLongitude(103.3333D);
+        issue.setStatus(IssueStatus.UNRESOLVED);
         issue.setReporter("Rafizan Uda Baharum");
         issue.setReportedDate(new Date());
         issue.setTitle("Kerosakan Jalan");
@@ -111,16 +121,17 @@ public class IssueDaoTest {
         issueDao.save(issue);
 
 
-        List<Issue> issues = issueDao.findAround(1D, 1.5555D, 103.3333D);
+        List<Issue> issues = issueDao.findAround(RESOLVED, 1D, 1.5555D, 103.3333D);
         for (Issue i : issues) {
             log.debug("issue: " + i);
         }
     }
 
     @Test
-    public void findAndUpdate(){
+    public void findAndUpdate() {
         List<Issue> issues = issueDao.find();
         for (Issue issue : issues) {
+            log.debug("status: " + issue.getStatus());
             issueDao.update(issue);
         }
     }

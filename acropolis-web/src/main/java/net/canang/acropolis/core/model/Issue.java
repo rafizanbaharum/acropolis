@@ -9,7 +9,7 @@ import java.util.Date;
 public interface Issue {
 
     public static String FIELD = "location";
-
+    public static String STATUS = "status";
 
     Long getId();
 
@@ -39,4 +39,7 @@ public interface Issue {
 
     void setDescription(String description);
 
+    IssueStatus getStatus();
+
+    void setStatus(IssueStatus status);
 }

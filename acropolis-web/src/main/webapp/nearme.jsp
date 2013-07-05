@@ -21,7 +21,7 @@
         var map;
         var json;
         var center = new google.maps.LatLng(1.5243, 103.64988);
-        var findUrl = '/issues/find?lat=' + center.lat().toFixed(5) + '&lng=' + center.lng().toFixed(5);
+        var findUnresolvedUrl = '/issues/findunresolved?lat=' + center.lat().toFixed(5) + '&lng=' + center.lng().toFixed(5);
         var postUrl = '/issues/add';
         var iconUrl = 'https://maps.gstatic.com/mapfiles/ms2/micons/blue-dot.png';
 
@@ -79,7 +79,7 @@
          *
          */
         function addExistingMarkers() {
-            $.getJSON(findUrl, function(issues) {
+            $.getJSON(findUnresolvedUrl, function(issues) {
                 var infoWindow = new google.maps.InfoWindow();
                 for (var i = 0; i < issues.length; i++) {
                     var myLatLng = new google.maps.LatLng(issues[i].latitude, issues[i].longitude);
@@ -147,7 +147,7 @@
     </script>
 
 </head>
-<body  style="background-color:#cccccc">
+<body style="background-color:#cccccc">
 <div id="doc3" class="yui-t3">
     <div id="hd">
     </div>

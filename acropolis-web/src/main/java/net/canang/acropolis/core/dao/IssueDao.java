@@ -1,6 +1,7 @@
 package net.canang.acropolis.core.dao;
 
 import net.canang.acropolis.core.model.Issue;
+import net.canang.acropolis.core.model.IssueStatus;
 
 import java.util.List;
 
@@ -14,7 +15,9 @@ public interface IssueDao {
 
     List<Issue> find();
 
-    List<Issue> findAround(Double radius, Double latitude, Double longitude);
+    List<Issue> find(IssueStatus status);
+
+    List<Issue> findAround(IssueStatus status, Double radius, Double latitude, Double longitude);
 
     void save(Issue issue);
 

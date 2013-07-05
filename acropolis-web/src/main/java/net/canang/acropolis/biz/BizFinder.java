@@ -10,7 +10,9 @@ import java.util.List;
  */
 public interface BizFinder {
 
-    List<Issue> findAround(Double radius, Double myLat, Double myLon);
+    List<Issue> findUnresolvedAround(Double radius, Double myLat, Double myLon);
+
+    List<Issue> findResolvedAround(Double radius, Double myLat, Double myLon);
 
     void saveIssue(Issue issue);
 

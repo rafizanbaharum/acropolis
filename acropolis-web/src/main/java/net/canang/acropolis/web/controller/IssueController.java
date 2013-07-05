@@ -30,16 +30,16 @@ public class IssueController {
     private BizFinder finder;
 
     @RequestMapping(value = "/nearme", method = RequestMethod.GET)
-    public String printWelcome(ModelMap model) {
+    public String nearMe(ModelMap model) {
         return "nearme";
     }
 
-    @RequestMapping(value = "/find", method = RequestMethod.GET)
+    @RequestMapping(value = "/findunresolved", method = RequestMethod.GET)
     public
     @ResponseBody
-    List<Issue> findIssues(@RequestParam String lat, @RequestParam String lng) {
+    List<Issue> findUnresolvedIssue(@RequestParam String lat, @RequestParam String lng) {
         log.debug("lat: " + lat + " lon: " + lng);
-        List<Issue> issues = finder.findAround(RADIUS, Double.parseDouble(lat), Double.parseDouble(lng));
+        List<Issue> issues = finder.findUnresolvedAround(RADIUS, Double.parseDouble(lat), Double.parseDouble(lng));
         log.debug("result: " + issues.size());
         return issues;
     }

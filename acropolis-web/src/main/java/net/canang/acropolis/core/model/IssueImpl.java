@@ -1,6 +1,7 @@
 package net.canang.acropolis.core.model;
 
 import org.hibernate.search.annotations.*;
+import org.hibernate.search.bridge.builtin.EnumBridge;
 import org.hibernate.search.spatial.Coordinates;
 import org.hibernate.search.spatial.SpatialFieldBridge;
 import org.hibernate.search.spatial.SpatialFieldBridgeByRange;
@@ -48,6 +49,16 @@ public class IssueImpl implements Issue {
 
     @Column(name = "REPORTED_DATE")
     private Date reportedDate;
+
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "ISSUE_STATUS")
+    @Field(index = Index.YES, analyze = Analyze.NO, store = Store.YES)
+    @FieldBridge(impl = EnumBridge.class)
+    private IssueStatus status;
+
+    public IssueImpl() {
+        setStatus(IssueStatus.UNRESOLVED);
+    }
 
     public Long getId() {
         return id;
@@ -104,6 +115,14 @@ public class IssueImpl implements Issue {
 
     public void setReportedDate(Date reportedDate) {
         this.reportedDate = reportedDate;
+    }
+
+    public IssueStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(IssueStatus status) {
+        this.status = status;
     }
 
     @Override
