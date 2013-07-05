@@ -66,8 +66,8 @@ public class IssueDaoImpl implements IssueDao {
 
     @Override
     public void update(Issue issue) {
-        // TODO:
-
+        Session session = sessionFactory.getCurrentSession();
+        session.update(issue);
     }
 
     @Override

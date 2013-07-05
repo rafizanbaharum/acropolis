@@ -12,4 +12,6 @@ public interface BizFinder {
 
     List<Issue> findAround(Double radius, Double myLat, Double myLon);
 
+    void saveIssue(Issue issue);
+
 }

@@ -117,4 +117,11 @@ public class IssueDaoTest {
         }
     }
 
+    @Test
+    public void findAndUpdate(){
+        List<Issue> issues = issueDao.find();
+        for (Issue issue : issues) {
+            issueDao.update(issue);
+        }
+    }
 }

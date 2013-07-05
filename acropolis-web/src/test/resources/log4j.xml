@@ -19,11 +19,11 @@
     </logger>
 
     <logger name="org.hibernate">
-        <level value="INFO"/>
+        <level value="ERROR"/>
     </logger>
 
     <logger name="org.springframework">
-        <level value="DEBUG"/>
+        <level value="ERROR"/>
     </logger>
 
     <root>

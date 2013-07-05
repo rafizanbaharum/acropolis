@@ -3,3 +3,12 @@ http://www.mapsmaniac.com/2012/02/using-gwt-with-google-maps-api-v3.html
 http://www.mapsmaniac.com/2012/02/search-for-properties-near-your-friends.html
 https://code.google.com/p/gwt-google-apis/wiki/MapsGettingStarted
 https://github.com/branflake2267/GWT-Maps-V3-Api
+
+
+goodle console: https://code.google.com/apis/console
+
+MD5:  67:0C:33:5F:17:8B:8B:5C:39:49:90:7B:36:EA:B7:4E
+SHA1: B7:B3:3C:BB:3D:D6:AA:E2:33:9C:FA:9A:BB:12:52:E2:51:0E:39:35
+
+android:AIzaSyDbT0_e_01JB3LJm56gj5Co0aP_0okSLA4
+browserapp:AIzaSyA9PTc9RgylBuf0tSRrQsPI3SSPTjPXOJY
