@@ -7,6 +7,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 /**
@@ -15,6 +17,9 @@ import java.util.List;
  */
 @Component("bizFinder")
 public class BizFinderImpl implements BizFinder {
+
+    public static final String KEY_PREFIX = "ACR";
+    public static final String KEY_FORMAT = "00000";
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -34,6 +39,8 @@ public class BizFinderImpl implements BizFinder {
 
     @Override
     public void saveIssue(Issue issue) {
+        NumberFormat formatter = new DecimalFormat(KEY_FORMAT);
+        issue.setKey(KEY_PREFIX + "-" + formatter.format(issueDao.count()));
         issueDao.save(issue);
         sessionFactory.getCurrentSession().flush();
     }

@@ -3,6 +3,8 @@ package net.canang.acropolis.web.controller;
 import net.canang.acropolis.biz.BizFinder;
 import net.canang.acropolis.core.model.Issue;
 import net.canang.acropolis.core.model.IssueImpl;
+import net.canang.acropolis.core.model.IssueStatus;
+import net.canang.acropolis.core.model.IssueType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,11 @@ public class IssueController {
         return "nearme";
     }
 
+    @RequestMapping(value = "/stats", method = RequestMethod.GET)
+    public String statistic(ModelMap model) {
+        return "stats";
+    }
+
     @RequestMapping(value = "/findunresolved", method = RequestMethod.GET)
     public
     @ResponseBody
@@ -46,9 +53,11 @@ public class IssueController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     @ResponseBody
-    public String addIssue(@RequestParam String title, @RequestParam String description, @RequestParam String lat, @RequestParam String lng) {
-        log.debug("title:" + title + "desc: " + description + " lat: " + lat + " lng: " + lng);
+    public String addIssue(@RequestParam String title, @RequestParam String type, @RequestParam String description, @RequestParam String lat, @RequestParam String lng) {
+        log.debug("type:" + type + " title:" + title + " desc: " + description + " lat: " + lat + " lng: " + lng);
         Issue issue = new IssueImpl();
+        issue.setType(IssueType.values()[Integer.valueOf(type)]);
+        issue.setStatus(IssueStatus.UNRESOLVED);
         issue.setLatitude(Double.parseDouble(lat));
         issue.setLongitude(Double.parseDouble(lng));
         issue.setReporter("Rafizan Uda Baharum");

@@ -50,7 +50,7 @@ public class AcropolisWebConfiguration extends WebMvcConfigurerAdapter {
         properties.put("hibernate.format_sql", "false");
         properties.put("javax.persistence.validation.mode", "none");
         properties.put("hibernate.search.default.directory_provider", "filesystem");
-        properties.put("hibernate.search.default.indexBase", "/finapps/acropolis/acropolis-web/indexes");
+        properties.put("hibernate.search.default.indexBase", "C:/Projects/GitHub/acropolis/acropolis-web/indexes");
 
         //properties.put("hibernate.connection.pool_size", "1");
         //properties.put("hibernate.format_sql", "true");
@@ -71,9 +71,11 @@ public class AcropolisWebConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setUsername("fs");
-        dataSource.setPassword("F6591196S");
-        dataSource.setUrl("jdbc:oracle:thin:@161.139.20.158:1521:smuhrf");
+        dataSource.setUsername("cca");
+        dataSource.setPassword("abc123");
+        dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:ORCL");
+//        dataSource.setPassword("F6591196S");
+//        dataSource.setUrl("jdbc:oracle:thin:@161.139.20.158:1521:smuhrf");
         dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
         dataSource.setInitialSize(10);
         dataSource.setMaxActive(5);

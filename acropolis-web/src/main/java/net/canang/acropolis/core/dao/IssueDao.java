@@ -19,6 +19,8 @@ public interface IssueDao {
 
     List<Issue> findAround(IssueStatus status, Double radius, Double latitude, Double longitude);
 
+    Integer count();
+
     void save(Issue issue);
 
     void update(Issue issue);

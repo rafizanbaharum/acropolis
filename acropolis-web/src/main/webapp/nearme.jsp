@@ -23,7 +23,12 @@
         var center = new google.maps.LatLng(1.5243, 103.64988);
         var findUnresolvedUrl = '/issues/findunresolved?lat=' + center.lat().toFixed(5) + '&lng=' + center.lng().toFixed(5);
         var postUrl = '/issues/add';
-        var iconUrl = 'https://maps.gstatic.com/mapfiles/ms2/micons/blue-dot.png';
+        var iconUrl = 'https://maps.gstatic.com/mapfiles/ms2/micons/flag.png';
+        var iconUrl0 = 'https://maps.gstatic.com/mapfiles/ms2/micons/purple-dot.png';
+        var iconUrl1 = 'https://maps.gstatic.com/mapfiles/ms2/micons/yellow-dot.png';
+        var iconUrl2 = 'https://maps.gstatic.com/mapfiles/ms2/micons/green-dot.png';
+        var iconUrl3 = 'https://maps.gstatic.com/mapfiles/ms2/micons/orange-dot.png';
+        var iconUrl4 = 'https://maps.gstatic.com/mapfiles/ms2/micons/pink-dot.png';
 
         function initialize() {
             var mapOptions = {
@@ -83,12 +88,15 @@
                 var infoWindow = new google.maps.InfoWindow();
                 for (var i = 0; i < issues.length; i++) {
                     var myLatLng = new google.maps.LatLng(issues[i].latitude, issues[i].longitude);
-                    var marker = new google.maps.Marker({
+                    var typeIcon = switchIcon(issues[i].type);
+                    var markerOptions = {
                         position: myLatLng,
                         map: map,
                         animation: google.maps.Animation.DROP,
-                        title: issues[i].title
-                    });
+                        title: issues[i].key + ':' + issues[i].title,
+                        icon:typeIcon
+                    };
+                    var marker = new google.maps.Marker(markerOptions);
                     markers.push(marker);
                     google.maps.event.addListener(marker, 'click', (function(marker, i) {
                         return function() {
@@ -98,6 +106,14 @@
                     })(marker, i));
                 }
             })
+        }
+
+        function switchIcon(type) {
+            if ("GENERAL" == type) return iconUrl0
+            if ("CRIME" == type) return iconUrl1
+            if ("PETTY_CRIME" == type) return iconUrl2
+            if ("TOWNSHIP" == type) return iconUrl3
+            if ("WELFARE" == type) return iconUrl4
         }
 
         function setAllMap(map) {
@@ -127,13 +143,14 @@
         $(function() {
             $("#submitBtn").click(function() {
                 var title = $("input#title").val();
+                var type = $("select#type").val();
                 var description = $("textarea#description").val();
                 var lat = $("input#lat").val();
                 var lng = $("input#lng").val();
                 $.ajax({
                     type: "GET",
                     url: postUrl,
-                    data: "title=" + title + "&description=" + description + "&lat=" + lat + "&lng=" + lng,
+                    data: "type=" + type + "&title=" + title + "&description=" + description + "&lat=" + lat + "&lng=" + lng,
                     success: function(data) {
                         deleteOverlays();
                         clearInputs();
@@ -159,7 +176,16 @@
                 <fieldset>
                     <legend>ACROPOLIS: ADUAN</legend>
                     <label>Title</label>
+
                     <input id="title" name="title" type="text" placeholder="Your title..." size="100"/>
+                    <label>Type</label>
+                    <select id="type" name="type">
+                        <option value="0">GENERAL</option>
+                        <option value="1">CRIME</option>
+                        <option value="2">PETTY CRIME</option>
+                        <option value="3">TOWNSHIP</option>
+                        <option value="3">WELFARE</option>
+                    </select>
                     <label>Description</label>
                     <textarea id="description" name="description" cols="15" rows="16"
                               placeholder="Your description..."></textarea>

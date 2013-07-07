@@ -1,5 +1,6 @@
 package net.canang.acropolis.core.model;
 
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.hibernate.search.annotations.*;
 import org.hibernate.search.bridge.builtin.EnumBridge;
 import org.hibernate.search.spatial.Coordinates;
@@ -37,6 +38,10 @@ public class IssueImpl implements Issue {
     private Double longitude;
 
     @Field(index = Index.YES, analyze = Analyze.YES, store = Store.YES)
+    @Column(name = "KEY")
+    private String key;
+
+    @Field(index = Index.YES, analyze = Analyze.YES, store = Store.YES)
     @Column(name = "TITLE")
     private String title;
 
@@ -56,6 +61,12 @@ public class IssueImpl implements Issue {
     @FieldBridge(impl = EnumBridge.class)
     private IssueStatus status;
 
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "ISSUE_TYPE")
+    @Field(index = Index.YES, analyze = Analyze.NO, store = Store.YES)
+    @FieldBridge(impl = EnumBridge.class)
+    private IssueType type;
+
     public IssueImpl() {
         setStatus(IssueStatus.UNRESOLVED);
     }
@@ -68,6 +79,14 @@ public class IssueImpl implements Issue {
         this.id = id;
     }
 
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String getTitle() {
         return title;
@@ -123,6 +142,14 @@ public class IssueImpl implements Issue {
 
     public void setStatus(IssueStatus status) {
         this.status = status;
+    }
+
+    public IssueType getType() {
+        return type;
+    }
+
+    public void setType(IssueType type) {
+        this.type = type;
     }
 
     @Override

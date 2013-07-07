@@ -78,6 +78,12 @@ public class IssueDaoImpl implements IssueDao {
         return fullTextQuery.list();
     }
 
+    public Integer count(){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select count(i) from Issue i");
+        return ((Long)query.uniqueResult()).intValue();
+    }
+
     @Override
     public void save(Issue issue) {
         Session session = sessionFactory.getCurrentSession();

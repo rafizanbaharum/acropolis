@@ -2,12 +2,15 @@ package net.canang.acropolis.mob;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
@@ -21,6 +24,8 @@ import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -34,10 +39,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends Activity implements LocationListener {
+public class MainActivity extends Activity implements LocationListener, LoaderManager.LoaderCallbacks<List<Issue>> {
 
     private static final String TAG = "MainActivity";
-
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private ListView drawerList;
@@ -49,7 +53,6 @@ public class MainActivity extends Activity implements LocationListener {
     private LocationManager locationManager;
     private String provider;
     private Location location;
-    private static final String ENDPOINT_URL = "http://161.139.20.154/issues/findunresolved";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,27 +86,34 @@ public class MainActivity extends Activity implements LocationListener {
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("lat", Double.toString(location.getLatitude())));
         params.add(new BasicNameValuePair("lng", Double.toString(location.getLongitude())));
-        JSONArray result = parser.makeHttpRequest(ENDPOINT_URL, "GET", params);
+        JSONArray result = parser.makeHttpRequest(getString(R.string.endpoint_url), "GET", params);
         try {
             if (null != result) {
                 for (int i = 0; i < result.length(); i++) {
                     JSONObject o = result.getJSONObject(i);
                     Issue issue = new Issue(
                             o.getLong("id"),
+                            o.getString("key"),
                             o.getDouble("latitude"),
                             o.getDouble("longitude"),
                             o.getString("title"),
-                            o.getString("description"));
+                            o.getString("description"),
+                            o.getString("type"),
+                            o.getString("status")
+                    );
                     issues.add(issue);
                 }
 
+
                 for (Issue issue : issues) {
+                    switchMarkerIcon(issue.getType());
                     Marker marker = map.addMarker(new MarkerOptions()
                             .position(new LatLng(issue.getLat(), issue.getLng()))
-                            .title(issue.getTitle())
-                            .snippet(issue.getDescription()));
+                            .title(issue.getKey() + ":" + issue.getTitle())
+                            .snippet(issue.getDescription())
+                            .icon(switchMarkerIcon(issue.getType())));
                     markers.add(marker);
-                    titles.add(issue.getTitle());
+                    titles.add(issue.getKey() + ":" + issue.getTitle());
                 }
 
                 // =========================================================================================
@@ -132,12 +142,45 @@ public class MainActivity extends Activity implements LocationListener {
         }
     }
 
+    private BitmapDescriptor switchMarkerIcon(String type) {
+        if ("GENERAL".equals(type))
+            return BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE);
+        else if ("CRIME".equals(type))
+            return BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE);
+        else if ("PETTY_CRIME".equals(type))
+            return BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN);
+        else if ("TOWNSHIP".equals(type))
+            return BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED);
+        else if ("WELFARE".equals(type))
+            return BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE);
+
+        return BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    // TODO
+    @Override
+    public Loader<List<Issue>> onCreateLoader(int i, Bundle bundle) {
+        return null;
+    }
+
+    // TODO
+    @Override
+    public void onLoadFinished(Loader<List<Issue>> listLoader, List<Issue> issues) {
+
+    }
+
+    // TODO
+    @Override
+    public void onLoaderReset(Loader<List<Issue>> listLoader) {
+
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
@@ -183,4 +226,9 @@ public class MainActivity extends Activity implements LocationListener {
         return true;
     }
 
+//    private void callIssueIntent(){
+//        Intent msgIntent = new Intent(this, IssueIntentService.class);
+//        msgIntent.putExtra(IssueIntentService.PARAM_IN_MSG, strInputMsg);
+//        startService(msgIntent);
+//    }
 }
