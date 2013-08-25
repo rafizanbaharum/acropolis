@@ -173,7 +173,7 @@
         <div class="yui-b" style="width:22%; height:59em">
             <p id="result"></p>
 
-            <form id="issueForm" action="" method="POST">
+            <form id="issueForm" action="/acropolis-web" method="POST">
                 <fieldset>
                     <legend>ACROPOLIS: ADUAN</legend>
                     <label>Title</label>

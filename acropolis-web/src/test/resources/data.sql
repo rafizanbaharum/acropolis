@@ -11,3 +11,6 @@ insert into ISSUE (ID, LAT, LON, TITLE, DESCRIPTION, REPORTER, REPORTED_DATE) va
 insert into ISSUE (ID, LAT, LON, TITLE, DESCRIPTION, REPORTER, REPORTED_DATE) values (1010, 2.5243, 102.388, 'Kerosakan Lampu Jalan II', 'Kerosakan lampu memnyebabkan ramai orang terkandas II', 'Rafizan Uda Baharum', TIMESTAMP '2013-06-30 00:29:01');
 insert into ISSUE (ID, LAT, LON, TITLE, DESCRIPTION, REPORTER, REPORTED_DATE) values (1011, 1.54217, 103.65767, 'Pondok Bas Roboh', 'Roboh dilanda banjir minggu lepas', 'Rafizan Uda Baharum', TIMESTAMP '2013-06-29 02:40:33');
 insert into ISSUE (ID, LAT, LON, TITLE, DESCRIPTION, REPORTER, REPORTED_DATE) values (1012, 1.54218, 103.6574, 'Kerosakan Lampu Jalan', 'Kerosakan lampu memnyebabkan ramai orang terkandas II Kerosakan lampu memnyebabkan ramai orang terkandas II Kerosakan lampu memnyebabkan ramai orang terkandas II Kerosakan lampu memnyebabkan ramai orang terkandas II', 'Rafizan Uda Baharum', TIMESTAMP '2013-06-29 02:41:00');
+
+
+insert into ISSUE (ID, LAT, LON, TITLE, DESCRIPTION, REPORTER, REPORTED_DATE) values (1005, 3.16519, 101.60645, 'Longkang tersumbat', 'Longkang yang tersumbat banyak tikus', 'Rafizan Uda Baharum', TIMESTAMP '2013-06-29 02:41:00');
