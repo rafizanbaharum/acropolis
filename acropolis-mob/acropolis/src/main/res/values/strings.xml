@@ -7,6 +7,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="endpoint_url">http://192.168.1.4:8080/issues/findunresolved</string>
+    <string name="endpoint_url">http://107.22.213.125:8080/acropolis-web/issues/findunresolved</string>
     <!--<string name="endpoint_url">http://161.139.20.154/issues/findunresolved</string>-->
 </resources>

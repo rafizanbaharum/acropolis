@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="/resources/reset-fonts-grids.css">
-    <link rel="stylesheet" type="text/css" href="/resources/base.css">
+    <link rel="stylesheet" type="text/css" href="resources/reset-fonts-grids.css">
+    <link rel="stylesheet" type="text/css" href="resources/base.css">
     <link rel="stylesheet" type="text/css" href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css">
 
     <style>
