@@ -11,7 +11,8 @@
         <junit.version>4.8.1</junit.version>
         <log4j.version>1.2.16</log4j.version>
         <mysql.version>5.1.18</mysql.version>
-        <oracle.version>10.2.0.2.0</oracle.version>
+        <mysql.version>5.1.26</mysql.version>
+        <!--<oracle.version>10.2.0.2.0</oracle.version>-->
         <jackson.version>1.9.10</jackson.version>
         <springframework.version>3.2.3.RELEASE</springframework.version>
         <spring-security.version>3.1.4.RELEASE</spring-security.version>
@@ -197,10 +198,15 @@
             <version>${junit.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>oracle</artifactId>
-            <version>${oracle.version}</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.oracle</groupId>-->
+            <!--<artifactId>oracle</artifactId>-->
+            <!--<version>${oracle.version}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
