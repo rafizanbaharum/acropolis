@@ -40,7 +40,7 @@ public class BizFinderImpl implements BizFinder {
     @Override
     public void saveIssue(Issue issue) {
         NumberFormat formatter = new DecimalFormat(KEY_FORMAT);
-        issue.setKey(KEY_PREFIX + "-" + formatter.format(issueDao.count()));
+        issue.setCode(KEY_PREFIX + "-" + formatter.format(issueDao.count()));
         issueDao.save(issue);
         sessionFactory.getCurrentSession().flush();
     }

@@ -21,9 +21,9 @@ public interface Issue {
     /**
      * @return
      */
-    String getKey();
+    String getCode();
 
-    void setKey(String key);
+    void setCode(String key);
 
     /**
      * @return

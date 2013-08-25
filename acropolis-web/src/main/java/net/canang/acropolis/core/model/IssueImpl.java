@@ -38,8 +38,8 @@ public class IssueImpl implements Issue {
     private Double longitude;
 
     @Field(index = Index.YES, analyze = Analyze.YES, store = Store.YES)
-    @Column(name = "KEY")
-    private String key;
+    @Column(name = "CODE")
+    private String code;
 
     @Field(index = Index.YES, analyze = Analyze.YES, store = Store.YES)
     @Column(name = "TITLE")
@@ -80,12 +80,12 @@ public class IssueImpl implements Issue {
     }
 
 
-    public String getKey() {
-        return key;
+    public String getCode() {
+        return code;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getTitle() {
