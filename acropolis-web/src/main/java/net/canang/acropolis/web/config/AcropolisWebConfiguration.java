@@ -44,13 +44,15 @@ public class AcropolisWebConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     public Properties hibernateProperties() {
         Properties properties = new Properties();
-        properties.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
+        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+//        properties.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
         properties.put("hibernate.show_sql", "false");
         properties.put("hibernate.hbm2ddl.auto", "update");
         properties.put("hibernate.format_sql", "false");
         properties.put("javax.persistence.validation.mode", "none");
         properties.put("hibernate.search.default.directory_provider", "filesystem");
-        properties.put("hibernate.search.default.indexBase", "C:/Projects/GitHub/acropolis/acropolis-web/indexes");
+        properties.put("hibernate.search.default.indexBase", "home/deployer/GitHub/acropolis/indexes");
+//        properties.put("hibernate.search.default.indexBase", "C:/Projects/GitHub/acropolis/acropolis-web/indexes");
 
         //properties.put("hibernate.connection.pool_size", "1");
         //properties.put("hibernate.format_sql", "true");
@@ -71,12 +73,15 @@ public class AcropolisWebConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setUsername("cca");
-        dataSource.setPassword("abc123");
-        dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:ORCL");
-//        dataSource.setPassword("F6591196S");
-//        dataSource.setUrl("jdbc:oracle:thin:@161.139.20.158:1521:smuhrf");
-        dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
+        dataSource.setUsername("corernd");
+        dataSource.setPassword("corernd");
+        dataSource.setUrl("jdbc:mysql://cfi.cwetwsccwmot.us-east-1.rds.amazonaws.com:3306/cfi?zeroDateTimeBehavior=convertToNull");
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+
+//        dataSource.setUsername("cca");
+//        dataSource.setPassword("abc123");
+//        dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:ORCL");
+//        dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
         dataSource.setInitialSize(10);
         dataSource.setMaxActive(5);
         dataSource.setMaxWait(5000);

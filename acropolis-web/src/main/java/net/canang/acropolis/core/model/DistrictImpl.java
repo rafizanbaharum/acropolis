@@ -17,8 +17,9 @@ public class DistrictImpl implements District {
     @Id
     @DocumentId
     @Column(name = "ID", nullable = false)
-    @GeneratedValue(generator = "SEQ_DISTRICT")
-    @SequenceGenerator(name = "SEQ_DISTRICT", sequenceName = "SEQ_DISTRICT", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(generator = "SEQ_DISTRICT")
+//    @SequenceGenerator(name = "SEQ_DISTRICT", sequenceName = "SEQ_DISTRICT", allocationSize = 1)
     private Long id;
 
     @Column(name = "CODE")

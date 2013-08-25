@@ -17,8 +17,9 @@ public class StateImpl implements State {
     @Id
     @DocumentId
     @Column(name = "ID", nullable = false)
-    @GeneratedValue(generator = "SEQ_STATE")
-    @SequenceGenerator(name = "SEQ_STATE", sequenceName = "SEQ_STATE", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(generator = "SEQ_STATE")
+//    @SequenceGenerator(name = "SEQ_STATE", sequenceName = "SEQ_STATE", allocationSize = 1)
     private Long id;
 
     @Column(name = "CODE")

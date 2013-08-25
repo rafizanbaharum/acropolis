@@ -1,6 +1,5 @@
 package net.canang.acropolis.core.model;
 
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.hibernate.search.annotations.*;
 import org.hibernate.search.bridge.builtin.EnumBridge;
 import org.hibernate.search.spatial.Coordinates;
@@ -23,8 +22,9 @@ public class IssueImpl implements Issue {
     @Id
     @DocumentId
     @Column(name = "ID", nullable = false)
-    @GeneratedValue(generator = "SEQ_ISSUE")
-    @SequenceGenerator(name = "SEQ_ISSUE", sequenceName = "SEQ_ISSUE", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(generator = "SEQ_ISSUE")
+//    @SequenceGenerator(name = "SEQ_ISSUE", sequenceName = "SEQ_ISSUE", allocationSize = 1)
     private Long id;
 
     @Column(name = "LAT")
