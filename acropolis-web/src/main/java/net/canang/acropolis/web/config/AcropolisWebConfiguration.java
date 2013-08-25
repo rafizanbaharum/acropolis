@@ -51,7 +51,7 @@ public class AcropolisWebConfiguration extends WebMvcConfigurerAdapter {
         properties.put("hibernate.format_sql", "false");
         properties.put("javax.persistence.validation.mode", "none");
         properties.put("hibernate.search.default.directory_provider", "filesystem");
-        properties.put("hibernate.search.default.indexBase", "/usr/share/tomcat/webapps/acropolis/indexes");
+        properties.put("hibernate.search.default.indexBase", "/var/log/tomcat6/indexes/acropolis");
 //        properties.put("hibernate.search.default.indexBase", "C:/Projects/GitHub/acropolis/acropolis-web/indexes");
 
         //properties.put("hibernate.connection.pool_size", "1");
