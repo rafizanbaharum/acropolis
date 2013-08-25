@@ -73,8 +73,8 @@ public class AcropolisWebConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setUsername("corernd");
-        dataSource.setPassword("corernd");
+        dataSource.setUsername("cfi");
+        dataSource.setPassword("abcd1234");
         dataSource.setUrl("jdbc:mysql://cfi.cwetwsccwmot.us-east-1.rds.amazonaws.com:3306/cfi?zeroDateTimeBehavior=convertToNull");
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 
