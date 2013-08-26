@@ -23,7 +23,7 @@
         var json;
         var center = new google.maps.LatLng(1.5243, 103.64988);
         var findUnresolvedUrl = '/acropolis-web/issues/findunresolved?lat=' + center.lat().toFixed(5) + '&lng=' + center.lng().toFixed(5);
-        var postUrl = '/issues/add';
+        var postUrl = '/acropolis-web/issues/add';
         var iconUrl = 'https://maps.gstatic.com/mapfiles/ms2/micons/flag.png';
         var iconUrl0 = 'https://maps.gstatic.com/mapfiles/ms2/micons/purple-dot.png';
         var iconUrl1 = 'https://maps.gstatic.com/mapfiles/ms2/micons/yellow-dot.png';
